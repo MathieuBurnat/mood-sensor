@@ -32,12 +32,27 @@ void loop() {
   blueSensorValue = analogRead(blueSensorValue);
   delay(5);
 
+  // Print led's sensor values
   Serial.print("Raw Sensor Values \t Red : ");
   Serial.print(redSensorValue);
   Serial.print("\t Green : ");
   Serial.print(greenSensorValue);
   Serial.print("\t Blue : ");
-  Serial.println(blueSensorValue);
+  Serial.print(blueSensorValue);
 
-  delay(1000);
+  // AnalogWrite(s)
+  redValue = redSensorValue / 4;
+  greenValue = greenSensorValue / 4;
+  blueValue = blueSensorValue / 4;
+
+  Serial.print("\t RGB : ");
+  Serial.print(redValue);
+  Serial.print(", ");
+  Serial.print(greenValue);
+  Serial.print(", ");
+  Serial.println(blueValue);
+
+  analogWrite(TricolorLEDRed, redValue);
+  analogWrite(TricolorLEDGreen, greenValue);
+  analogWrite(TricolorLEDBlue, blueValue);
 }
